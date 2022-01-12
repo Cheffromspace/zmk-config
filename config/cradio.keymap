@@ -8,7 +8,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
-
 &mt {
   //  flavor = "tap-preferred";
    // tapping_term_ms = <200>;
@@ -59,33 +58,52 @@
         
     };
 
+ behaviors {
+        bkdel: backspace_del {
+            compatible = "zmk,behavior-mod-morph";
+            label = "BACKSPACE DEL";
+            #binding-cells = <0>;
+            bindings = <&kp BKSP>, <&kp DEL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
         keymap {
                 compatible = "zmk,keymap";
                 
        		default_layer {
 		bindings = <
-		&kp Q &kp W &kp F &kp P &kp G 						&kp J &kp L  &kp U    &kp Y   &kp BKSP 
-		&kp A &kp R &kp S &kp T &kp D 			        	        &kp H &kp N &kp E &kp I &kp O
-		&kp Z &kp X &kp C &kp V &kp B				        &kp K &kp M  &kp COMMA &kp DOT &kp FSLH
-          				&sk LSFT &kp SPC  				&sl 2 &sk RCTRL 
+		&kp Q &kp W &kp F &kp P &kp G 					&kp J &kp U  &kp Y    &kp Y   &bkdel
+		&kp A &hm LGUI R &hm LALT S &kp T &kp D 			    &kp H &kp N &hm RALT E &hm RGUI I &kp O
+		&kp Z &kp X &kp C &kp V &kp B				    &kp M &kp M  &kp CMMA &kp DOT &kp FSLH
+          				&sk LSFT &kp SPC  				&sl 1 & sk RCTL 
 		>;
 		};
 
        		left_layer {
 		bindings = <
-		&kp ESC  &kp NUM_2    &kp NUM_3    &kp NUM_4    &kp NUM_5		&kp NUM_6 &kp NUM_7 &kp NUM_8 &kp NUM_9 &kp NUM_0 
-		&kp TAB    &kp LC(S)    &kp DQT      &kp PIPE2     &kp HASH 		&kp MINUS &kp EQL  &kp LBKT &kp RBKT  &kp DEL 
-		&kp ESC    &kp TILDE 	&kp NON_US_BSLH &kp NON_US_HASH  &kp TILDE2 	&kp MINUS &kp GRAVE &kp LBKT &kp RBKT  &kp DEL 
-					    &mo 1  &kp LGUI  					&kp RGUI &mo 2 
+		&kp ESC &kp AT &kp HASH &kp DLLR &kp PERCENT		        &kp CARET &kp AMPS &kp STAR &kp SEMI &kp COLON 
+		&kp TAB &kp UNDER &kp APOSTROPHE &kp DOUBLE &kp FSLH 		&kp LBKT &kp LBRC  &kp RBRC &kp RBKT  &kp ENTER
+		&kp TILDE &kp GRAVE	&kp EQL &kp PIPE &kp BSLH	          &sl 4 &kp LPRN &kp RPRN &trans  &to 3
+					                   &kp EXCL  &kp MINUS   					&to 2 &trans 
 		>;
 		};
 		
 		right_layer {
 		bindings = <
-		&kp BANG  &kp ATSN &kp HASH  &kp DLLR  &kp PRCT    			&kp CRRT  &kp AMPS &kp KMLT &kp LPRN &kp RPRN 
-		&kp HASH  &kp QMARK  &kp FSLH  &kp COLN  &kp SCLN 			&kp MINUS &kp KP_EQUAL  &kp LBRC  &kp RBRC   &kp BKSP
-		&kp LSFT  &kp KPLS &kp LBKT &kp RBKT   &kp BSLH    			&kp UNDER &kp LEFT &kp DOWN &kp UP  &kp RIGHT
-					  &mo 3 &kp LCTL  				&kp SPC  &mo 2 
+		&kp ESC &trans &trans &trans  &kp FSLH    			&kp MINUS  &kp N7 &kp N8 &kp N9 &kp BKSP 
+		&kp BKSP  &kp QMARK  &kp FSLH  &kp COLN  &kp SCLN 			&kp PLUS &kp N4  &kp N5  &kp N6   &kp ENTER
+		&trans  &trans &trans &trans   &kp BSLH    			&kp N0 &kp N1 &kp N2 &kp N3  &kp DOT
+					  &mo 3 &to 0  				&kp SPC  &mo 2 
 		>;
 		};	
 		
