@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The ZMK Contributors
+
  *
  * SPDX-License-Identifier: MIT
  */
@@ -17,48 +17,41 @@
 
     combos {
         compatible = "zmk,combos";
-        combo_esc {
+          combo_esc {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&kp ESC>;
         };
         
-         combo_tab {
+           combo_tab {
             timeout-ms = <50>;
             key-positions = <10 11>;
             bindings = <&kp TAB>;
         };
         
-            combo_ralt {
+           combo_ralt {
             timeout-ms = <50>;
             key-positions = <17 16>;
             bindings = <&kp RALT>;
         };
-        
-                    combo_lalt {
+           combo_lalt {
             timeout-ms = <50>;
             key-positions = <11 12>;
             bindings = <&kp LALT>;
         };
-        
-                           combo_lgui {
+           combo_lgui {
             timeout-ms = <50>;
             key-positions = <12 13>;
             bindings = <&kp LGUI>;
         };
-        
-        
            combo_rgui {
             timeout-ms = <50>;
             key-positions = <17 18>;
             bindings = <&kp RGUI>;
         };
-        
-
-        
     };
 
- behaviors {
+   behaviors {
         bkdel: backspace_del {
             compatible = "zmk,behavior-mod-morph";
             label = "BACKSPACE DEL";
@@ -77,44 +70,52 @@
         };
     };
 
-        keymap {
-                compatible = "zmk,keymap";
+   keymap {
+      compatible = "zmk,keymap";
                 
-       		default_layer {
-		bindings = <
-		&kp Q &kp W &kp F &kp P &kp G 					&kp J &kp U  &kp Y    &kp Y   &bkdel
-		&kp A &hm LGUI R &hm LALT S &kp T &kp D 			    &kp H &kp N &hm RALT E &hm RGUI I &kp O
-		&kp Z &kp X &kp C &kp V &kp B				    &kp M &kp M  &kp CMMA &kp DOT &kp FSLH
-          				&sk LSFT &kp SPC  				&sl 1 & sk RCTL 
-		>;
+ 		default_layer {
+      bindings = <
+        &kp Q &kp W &kp F &kp P &kp G 					&kp J &kp L  &kp U    &kp Y   &bkdel
+        &kp A &hm LGUI R &hm LALT S &kp T &kp D 			 &kp H &kp N &hm RALT E &hm RGUI I &kp O
+        &kp Z &kp X &kp C &kp V &kp B				    &kp K &kp M  &kp COMMA &kp DOT &kp FSLH
+                      &sk LSFT &kp SPACE  				&sl 1 &sk RCTL 
+      >;
 		};
 
-       		left_layer {
-		bindings = <
-		&kp ESC &kp AT &kp HASH &kp DLLR &kp PERCENT		        &kp CARET &kp AMPS &kp STAR &kp SEMI &kp COLON 
-		&kp TAB &kp UNDER &kp APOSTROPHE &kp DOUBLE &kp FSLH 		&kp LBKT &kp LBRC  &kp RBRC &kp RBKT  &kp ENTER
-		&kp TILDE &kp GRAVE	&kp EQL &kp PIPE &kp BSLH	          &sl 4 &kp LPRN &kp RPRN &trans  &to 3
-					                   &kp EXCL  &kp MINUS   					&to 2 &trans 
-		>;
+    left_layer {
+      bindings = <
+        &kp ESC &kp AT &kp HASH &kp DLLR &kp PERCENT		        &kp CARET &kp AMPS &kp STAR &kp SEMI &kp COLON
+        &kp TAB &kp UNDER &kp APOSTROPHE &kp DQT &kp FSLH 		&kp LBKT &kp LBRC  &kp RBRC &kp RBKT  &kp ENTER
+        &kp TILDE &kp GRAVE	&kp EQUAL &kp PIPE &kp BSLH	          &sl 4 &kp LPAR &kp RPAR &trans  &to 3
+                                 &kp EXCL  &kp MINUS   					&to 2 &trans
+      >;
 		};
-		
+
 		right_layer {
-		bindings = <
-		&kp ESC &trans &trans &trans  &kp FSLH    			&kp MINUS  &kp N7 &kp N8 &kp N9 &kp BKSP 
-		&kp BKSP  &kp QMARK  &kp FSLH  &kp COLN  &kp SCLN 			&kp PLUS &kp N4  &kp N5  &kp N6   &kp ENTER
-		&trans  &trans &trans &trans   &kp BSLH    			&kp N0 &kp N1 &kp N2 &kp N3  &kp DOT
-					  &mo 3 &to 0  				&kp SPC  &mo 2 
-		>;
-		};	
-		
-		tri_layer {
-		bindings = <
-		&kp NUM_1  &kp NUM_2    &kp NUM_3    &kp NUM_4    &kp NUM_5 			&trans &trans   &trans   &trans  &trans
-		&kp F1 &kp F2 &kp F3 &kp F4 &kp F5  						&trans &kp PG_UP  &kp K_VOL_UP &kp K_MUTE &trans 
-		&bt BT_CLR  &bt BT_NXT &bt BT_PRV &kp F6 &kp F7   				&trans &kp PG_DN  &kp K_VOL_DN  &trans &trans   
-					 &trans &trans  					&trans &trans 
-		>;
-		};	
-        
+      bindings = <
+        &kp ESC &trans &trans &trans &trans    			&kp MINUS  &kp N7 &kp N8 &kp N9 &kp BKSP
+        &kp BKSP  &kp LGUI &kp LALT &trans  &trans 			&kp PLUS &kp N4  &kp N5  &kp N6 &kp ENTER
+        &trans  &trans &trans &trans   &trans    			&kp N0 &kp N1 &kp N2 &kp N3  &kp DOT
+                &to 0 &kp SPACE  				&trans  &kp RCTL
+      >;
+		};
+
+		navigation_layer {
+      bindings = <
+        &kp ESC &trans &trans &to 5 &to 4   		&kp PG_DN &kp HOME  &kp END &trans &trans
+        &kp BKSP  &kp LGUI &kp LALT &trans  &trans 			&kp LEFT  &kp DOWN  &kp UP  &kp RIGHT &kp ENTER
+        &trans  &trans &trans &trans   &trans    			&kp PG_UP &trans &trans &trans &trans
+                &to 0 &kp SPACE 				&trans  &kp RCTL
+     >;
+		};
+
+		keyboard_layer {
+      bindings = <
+        &none &none &bt BT_CLR &bt BT_PRV &bt BT_NXT &none &none &none &none &none 
+        &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none &none &none &none &none 
+        &none &none &none &none &none &none &none &none &none &none 
+                             &to 0 &kp SPACE &none &none
+     >;
+		};
 	};
 };
